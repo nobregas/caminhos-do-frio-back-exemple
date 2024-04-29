@@ -16,7 +16,7 @@ import java.io.IOException;
 public class QrcodeService {
 
     private final QrcodeRepository qrcodeRepository;
-    private final QrCodeGenerator qrCodeGenerator = new QrCodeGeneratorImpl();
+    private final QrCodeGenerator qrCodeGenerator;
 
     public Qrcode criarQrcode(Cidade cidade) throws IOException, WriterException {
         Qrcode qrcode = new Qrcode();

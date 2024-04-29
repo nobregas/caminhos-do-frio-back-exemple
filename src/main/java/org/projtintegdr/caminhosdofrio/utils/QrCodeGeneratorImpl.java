@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.projtintegdr.caminhosdofrio.entities.Cidade;
 import org.projtintegdr.caminhosdofrio.entities.Qrcode;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,6 +21,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class QrCodeGeneratorImpl implements QrCodeGenerator{
     //TODO fazer essas variaveis de propriedades (Environement variables)
     private final String _baseUrl = "http://localhost:8080/";

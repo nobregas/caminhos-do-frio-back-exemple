@@ -69,4 +69,6 @@ public class Cidade {
                 .map(ServicoTuristicoResponseDto::new)
                 .collect(Collectors.toSet());
     }
+
+
 }
