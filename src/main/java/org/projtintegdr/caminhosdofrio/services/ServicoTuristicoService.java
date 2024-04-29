@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ServicoTuristicoService {
 /*
-TODO implementar o metodo obterTodosServicosTuristicos
 TODO implementar o metodo obterServicoTuristicoPorId
-TODO implementar o metodo criarServicoTuristico
 TODO implementar o metodo atualizarServicoTuristicoPorId
 TODO implementar o metodo removerServicoTuristicoPorId
 */
