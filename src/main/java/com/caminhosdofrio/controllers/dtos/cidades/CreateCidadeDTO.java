@@ -1,4 +1,4 @@
-package com.caminhosdofrio.dtos.cidades;
+package com.caminhosdofrio.controllers.dtos.cidades;
 
 import jakarta.validation.constraints.NotBlank;
 

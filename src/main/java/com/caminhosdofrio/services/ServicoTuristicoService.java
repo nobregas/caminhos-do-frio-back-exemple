@@ -1,10 +1,11 @@
 package com.caminhosdofrio.services;
 
-import com.caminhosdofrio.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
-import com.caminhosdofrio.dtos.servicos_turisticos.UpdateServicoTuristicoDTO;
-import com.caminhosdofrio.exceptions.entidades.ServicoTuristico;
-import com.caminhosdofrio.exceptions.validation.InvalidCnpjException;
+import com.caminhosdofrio.controllers.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
+import com.caminhosdofrio.controllers.dtos.servicos_turisticos.UpdateServicoTuristicoDTO;
+import com.caminhosdofrio.entidades.ServicoTuristico;
 import com.caminhosdofrio.exceptions.servico_turistico.ServicoTuristicoNotFoundException;
+import com.caminhosdofrio.exceptions.servico_turistico.UniqueCnpjException;
+import com.caminhosdofrio.exceptions.validation.InvalidCnpjException;
 import com.caminhosdofrio.repositories.ServicoTuristicoRepository;
 import com.caminhosdofrio.utils.CnpjUtil;
 import lombok.RequiredArgsConstructor;
@@ -16,54 +17,59 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ServicoTuristicoService {
 
-	private final ServicoTuristicoRepository servicoTuristicoRepository;
+    private final ServicoTuristicoRepository servicoTuristicoRepository;
 
-	public List<ServicoTuristico> listar() {
-		return servicoTuristicoRepository.findAll();
-	}
+    public List<ServicoTuristico> listar() {
+        return servicoTuristicoRepository.findAll();
+    }
 
-	public ServicoTuristico obterPorId(Long id) {
-		return servicoTuristicoRepository.findById(id).orElseThrow(
+    public ServicoTuristico obterPorId(Long id) {
+        return servicoTuristicoRepository.findById(id).orElseThrow(
                 ServicoTuristicoNotFoundException::new
-		);
-	}
+        );
+    }
 
-	public ServicoTuristico salvar(CreateServicoTuristicoDTO dto) {
-		var servicoTuristico = new ServicoTuristico(dto);
-		return servicoTuristicoRepository.save(servicoTuristico);
-	}
+    public ServicoTuristico salvar(CreateServicoTuristicoDTO dto) {
+        if (servicoTuristicoRepository.existsByCnpj(dto.cnpj()))
+            throw new UniqueCnpjException();
 
-	public void deletarPorId(Long id) {
-		var servicoTuristico = servicoTuristicoRepository.findById(id).orElseThrow(
-				ServicoTuristicoNotFoundException::new
-		);
+        var servicoTuristico = new ServicoTuristico(dto);
+        return servicoTuristicoRepository.save(servicoTuristico);
+    }
 
-		servicoTuristicoRepository.delete(servicoTuristico);
-	}
+    public void deletarPorId(Long id) {
+        var servicoTuristico = servicoTuristicoRepository.findById(id).orElseThrow(
+                ServicoTuristicoNotFoundException::new
+        );
 
-	public ServicoTuristico atualizarPorId(Long id, UpdateServicoTuristicoDTO dto) {
-		var servicoTuristico = servicoTuristicoRepository.findById(id).orElseThrow(
-				ServicoTuristicoNotFoundException::new
-		);
+        servicoTuristicoRepository.delete(servicoTuristico);
+    }
 
-		if(!dto.nome().isBlank()) {
-			servicoTuristico.setNome(dto.nome());
-		}
-		if(!dto.descricao().isBlank()) {
-			servicoTuristico.setDescricao(dto.descricao());
-		}
-		if(!dto.cnpj().isBlank()) {
-			if(CnpjUtil.isValidCnpj(dto.cnpj())) {
-				servicoTuristico.setCnpj(dto.cnpj());
-			} else throw new InvalidCnpjException();
+    public ServicoTuristico atualizarPorId(Long id, UpdateServicoTuristicoDTO dto) {
+        var servicoTuristico = servicoTuristicoRepository.findById(id).orElseThrow(
+                ServicoTuristicoNotFoundException::new
+        );
 
-		}
-		if(!dto.imagem().isBlank()) {
-			servicoTuristico.setImagem(dto.imagem());
-		}
-		return servicoTuristicoRepository.save(servicoTuristico);
-	}
+        if (!dto.nome().isBlank()) {
+            servicoTuristico.setNome(dto.nome());
+        }
+        if (!dto.descricao().isBlank()) {
+            servicoTuristico.setDescricao(dto.descricao());
+        }
+        if (!dto.cnpj().isBlank()) {
+            if (CnpjUtil.isValidCnpj(dto.cnpj())) {
+                if (!servicoTuristico.getCnpj().equals(dto.cnpj())) {
+                    if (servicoTuristicoRepository.existsByCnpj(dto.cnpj()))
+                        throw new UniqueCnpjException();
+                    servicoTuristico.setCnpj(dto.cnpj());
+                }
+            } else throw new InvalidCnpjException();
+        }
+        if (!dto.imagem().isBlank()) {
+            servicoTuristico.setImagem(dto.imagem());
+        }
 
-
+        return servicoTuristicoRepository.save(servicoTuristico);
+    }
 
 }

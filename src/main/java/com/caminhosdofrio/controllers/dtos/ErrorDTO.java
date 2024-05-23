@@ -1,4 +1,4 @@
-package com.caminhosdofrio.dtos;
+package com.caminhosdofrio.controllers.dtos;
 
 import java.time.LocalDateTime;
 

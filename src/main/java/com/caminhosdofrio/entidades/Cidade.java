@@ -1,10 +1,13 @@
-package com.caminhosdofrio.exceptions.entidades;
+package com.caminhosdofrio.entidades;
 
-import com.caminhosdofrio.dtos.cidades.CreateCidadeDTO;
+import com.caminhosdofrio.controllers.dtos.cidades.CreateCidadeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cidades")
@@ -33,4 +36,6 @@ public class Cidade {
 	@JoinColumn(name = "qrcode_id", referencedColumnName = "id")
 	private QrCode qrCode;
 
+	@OneToMany(mappedBy = "cidade")
+	private List<CidadeServico> cidadesServicos = new ArrayList<>();
 }

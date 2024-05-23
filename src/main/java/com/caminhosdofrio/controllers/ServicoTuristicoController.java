@@ -1,8 +1,9 @@
 package com.caminhosdofrio.controllers;
 
-import com.caminhosdofrio.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
-import com.caminhosdofrio.dtos.servicos_turisticos.UpdateServicoTuristicoDTO;
-import com.caminhosdofrio.exceptions.entidades.ServicoTuristico;
+import com.caminhosdofrio.controllers.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
+import com.caminhosdofrio.controllers.dtos.servicos_turisticos.UpdateServicoTuristicoDTO;
+import com.caminhosdofrio.entidades.ServicoTuristico;
+import com.caminhosdofrio.exceptions.servico_turistico.UniqueCnpjException;
 import com.caminhosdofrio.services.ServicoTuristicoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class ServicoTuristicoController {
     public ResponseEntity<ServicoTuristico> atualizarServicoTuristicoPorId(
             @PathVariable Long id,
             @RequestBody UpdateServicoTuristicoDTO dto
-    ) {
+    ) throws UniqueCnpjException {
         return ResponseEntity.ok(servicoTuristicoService.atualizarPorId(id, dto));
     }
 

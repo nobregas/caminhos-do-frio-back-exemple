@@ -1,6 +1,6 @@
 package com.caminhosdofrio.services;
 
-import com.caminhosdofrio.exceptions.entidades.QrCode;
+import com.caminhosdofrio.entidades.QrCode;
 import com.caminhosdofrio.repositories.QrcodeRepository;
 import com.caminhosdofrio.utils.QrCodeGenerator;
 import com.google.zxing.WriterException;

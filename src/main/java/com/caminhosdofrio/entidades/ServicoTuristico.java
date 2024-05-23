@@ -1,6 +1,6 @@
-package com.caminhosdofrio.exceptions.entidades;
+package com.caminhosdofrio.entidades;
 
-import com.caminhosdofrio.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
+import com.caminhosdofrio.controllers.dtos.servicos_turisticos.CreateServicoTuristicoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

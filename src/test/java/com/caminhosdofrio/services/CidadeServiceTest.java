@@ -1,7 +1,7 @@
 package com.caminhosdofrio.services;
 
-import com.caminhosdofrio.dtos.cidades.CreateCidadeDTO;
-import com.caminhosdofrio.exceptions.entidades.Cidade;
+import com.caminhosdofrio.controllers.dtos.cidades.CreateCidadeDTO;
+import com.caminhosdofrio.entidades.Cidade;
 import com.caminhosdofrio.repositories.CidadeRepository;
 import com.google.zxing.WriterException;
 import org.junit.jupiter.api.DisplayName;

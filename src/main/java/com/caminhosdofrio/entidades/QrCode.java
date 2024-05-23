@@ -1,4 +1,4 @@
-package com.caminhosdofrio.exceptions.entidades;
+package com.caminhosdofrio.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

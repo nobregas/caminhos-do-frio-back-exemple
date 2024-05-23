@@ -1,4 +1,4 @@
-package com.caminhosdofrio.dtos.servicos_turisticos;
+package com.caminhosdofrio.controllers.dtos.servicos_turisticos;
 
 public record UpdateServicoTuristicoDTO(
         String nome,

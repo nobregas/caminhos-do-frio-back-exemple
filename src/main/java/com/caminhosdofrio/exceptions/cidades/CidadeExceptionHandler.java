@@ -1,6 +1,6 @@
 package com.caminhosdofrio.exceptions.cidades;
 
-import com.caminhosdofrio.dtos.ErrorDTO;
+import com.caminhosdofrio.controllers.dtos.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
