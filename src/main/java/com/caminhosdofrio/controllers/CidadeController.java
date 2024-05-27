@@ -87,7 +87,7 @@ public class CidadeController {
 	}
 
 	@GetMapping("/{cidadeId}/servicos")
-	public ResponseEntity<?> associarServico(@PathVariable("cidadeId") Long cidadeId) {
+	public ResponseEntity<?> listarServicos(@PathVariable("cidadeId") Long cidadeId) {
 
 		var servicos = cidadeService.listarServicos(cidadeId);
 		return ResponseEntity.ok(servicos);
